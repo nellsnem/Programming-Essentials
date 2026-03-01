@@ -14,12 +14,19 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
 
+    public float jumpForce = 5.0f;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         if (rb == null) Debug.LogWarning("PlayerController needs a Rigidbody.");
     }
-
+    void Update()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        }
+    }
     private void FixedUpdate()
     {
         Vector2 moveInput = Vector2.zero;
